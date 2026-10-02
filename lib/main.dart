@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'profile_card.dart';
+import 'profile_card.dart'; // Mengimport ProfileCard dari langkah 1
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Tugas Layout Flutter',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple), // Diperbaiki
+        // Background sesuai aturan NIM Ganjil/Genap
+        scaffoldBackgroundColor: Colors.tealAccent[100],
         useMaterial3: true,
       ),
-      home: const HomePage(), // Diperbaiki: home diaktifkan
+      home: const HomePage(),
     );
   }
 }
@@ -25,25 +27,26 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState(); // Diperbaiki: 'State' pakai huruf besar
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> { // Diperbaiki: 'State' pakai huruf besar
+class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   final List<Widget> pages = const [
     HomeContent(),
-    Center(child: Text("Halaman Settings")), // Ditambahkan agar tidak crash saat pindah tab
+    Center(child: Text("Halaman Settings")),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Diperbaiki: Scaffold menggunakan tanda kurung ( )
+    return Scaffold(
       appBar: AppBar(
         title: const Text("Fahmi Hartanto"),
+        centerTitle: true,
       ),
       body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar( // Diperbaiki: bottomNavigationBar
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
@@ -61,7 +64,7 @@ class _HomePageState extends State<HomePage> { // Diperbaiki: 'State' pakai huru
           ),
         ],
       ),
-    ); // Diperbaiki: ditutup dengan );
+    );
   }
 }
 
@@ -70,39 +73,13 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16), // Diperbaiki: EdgeInsets bukan EdgeInserts
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Diperbaiki: crossAxisAlignment
-        children: [
-          Container(
-            width: 200,
-            height: 30,
-            color: Colors.grey, // Diperbaiki: grey huruf kecil
-          ),
-          
-          const SizedBox(height: 16), // Diperbaiki: Gunakan SizedBox untuk memberi jarak
-          
-          Container(
-            width: 400,
-            height: 30,
-            color: Colors.grey, // Diperbaiki: grey huruf kecil
-          ),
-          
-          const SizedBox(height: 16), // Diperbaiki: Gunakan SizedBox
-          
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  height: 20,
-                  color: Colors.red, // Diperbaiki: red huruf kecil
-                ),
-              ),
-            ],
-          )
-        ],
+    return const Center(
+      child: ProfileCard(
+        nama: "Fahmi Hartanto",
+        nim: "20240801121", // Sesuaikan dengan NIM asli Anda
+        hobi: "Membaca Buku",
+        skorAktivitas: 97,  // Sesuaikan dengan rumus NIM Anda
       ),
-    ); // Diperbaiki: ditambah titik koma ;
+    );
   }
 }

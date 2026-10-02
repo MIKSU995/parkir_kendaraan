@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
-  // 1. Konstruktor & Properti Wajib
+  // 1. Parameter Wajib
   final String nama;
   final String nim;
   final String hobi;
@@ -17,86 +17,113 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 2. Struktur Widget Tree
+    // Perhitungan Rumus NIM (Contoh NIM: 20230801047)
+    // Digit ke-2 dari belakang = 4
+    // Digit terakhir = 7
+    const double lebarKartu = 320.0 + (4 * 5); // = 340.0
+    const double sudutMelengkung = 12.0 + (7 * 1.5); // = 22.5
+    const double ukuranLogo = 60.0 + (7 * 2); // = 74.0
+    const double jarakPemisah = 15.0 + 7; // = 22.0
+
+    // 2. Struktur Widget Tree Utama (Root Kartu)
     return Container(
-      // Lebar Kartu = 320 + (4 * 5) = 340.0
-      width: 340.0, 
-      padding: const EdgeInsets.all(20.0), // Padding internal kartu
+      width: lebarKartu,
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        // Sudut Melengkung = 12 + (7 * 1.5) = 22.5
-        borderRadius: BorderRadius.circular(22.5), 
+        borderRadius: BorderRadius.circular(sudutMelengkung),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2), // Hitam transparan
+            color: Colors.black.withOpacity(0.15),
             blurRadius: 10.0,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header Kartu (Horizontal)
+          // Header Kartu (Horizontal - Row)
           Row(
             children: [
-              // Sisi Kiri: Logo dibungkus Container berbingkai
+              // Sisi Kiri: FlutterLogo dalam Container Bingkai Lingkaran/Lengkung
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  color: Colors.grey[200], // Opsional agar bentuk lingkaran terlihat
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
                 padding: const EdgeInsets.all(8.0),
-                // Ukuran Logo = 60 + (7 * 2) = 74.0
-                child: const FlutterLogo(size: 74.0), 
+                child: const FlutterLogo(size: ukuranLogo),
               ),
-              
-              // Jarak Pemisah = 15 + 7 = 22.0
-              const SizedBox(width: 22.0), 
-              
-              // Sisi Kanan: Teks
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Kartu Praktikan",
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  Text(
-                    nama,
-                    style: const TextStyle(
-                      fontSize: 18, 
-                      fontWeight: FontWeight.bold
+
+              // Jarak Pemisah Horizontal
+              const SizedBox(width: jarakPemisah),
+
+              // Sisi Kanan: Column Teks Judul & Nama
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Kartu Praktikan",
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 4),
+                    Text(
+                      nama,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          
-          const SizedBox(height: 15.0),
-          
+
+          const SizedBox(height: 16.0),
+
           // Pemisah
           const Divider(thickness: 1.5),
-          
-          const SizedBox(height: 15.0),
-          
-          // Bagian Detail Identitas (Vertikal)
+
+          const SizedBox(height: 16.0),
+
+          // Detail Identitas (Vertikal - Column)
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start, // Rata kiri
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "NIM: $nim",
-                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 8.0),
               Text(
                 "Hobi: $hobi",
-                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 8.0),
               Text(
                 "Skor Aktivitas: $skorAktivitas",
-                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
               ),
             ],
           ),
