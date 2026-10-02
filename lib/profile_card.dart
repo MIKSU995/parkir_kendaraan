@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'profile_card.dart';
 
 class ProfileCard extends StatelessWidget {
   // 1. Konstruktor & Properti Wajib
