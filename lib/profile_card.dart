@@ -66,7 +66,7 @@ class ProfileCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Kartu Praktikan",
+                      "Kartu Praktikum ",
                       style: TextStyle(
                         fontSize: 13,
                         color: Colors.grey,
