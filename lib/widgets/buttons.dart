@@ -20,8 +20,8 @@ class AppButton extends StatelessWidget {
       onPressed!();
     } else if (url != null) {
       final Uri uri = Uri.parse(url!);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        debugPrint('Tidak dapat membuka link: $url');
       }
     }
   }

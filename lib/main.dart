@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package0/flutter/material.dart';
 import 'theme/app_theme.dart';
 import 'widgets/buttons.dart';
 
@@ -46,16 +46,15 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Tombol Membuka URL Google Maps Kampus
+            // Link Maps menggunakan titik koordinat presisi Universitas Esa Unggul
             AppButton(
               label: 'Buka Lokasi Kampus',
               icon: Icons.location_on,
-              url: 'https://www.google.com/maps/search/?api=1&query=Universitas+Esa+Unggul',
+              url: 'https://www.google.com/maps/search/?api=1&query=-6.190691,106.782079',
             ),
 
             const SizedBox(height: 16),
 
-            // Tombol Notifikasi
             AppButton(
               label: 'Tampilkan Notifikasi',
               icon: Icons.notifications,
