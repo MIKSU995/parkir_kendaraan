@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Warna Utama Aplikasi
   static const Color primaryColor = Colors.teal;
-  static const Color secondaryColor = Colors.tealAccent;
   static const Color backgroundColor = Color(0xFFF8F9FA);
 
-  // Definisi Tema Terang (Light Theme)
-  static ThemeData get lightTheme {
+  // Dipanggil dengan `AppTheme.light` di main.dart
+  static ThemeData get light {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
@@ -26,9 +24,9 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
       ),
