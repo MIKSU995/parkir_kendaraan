@@ -20,8 +20,19 @@ class AppButton extends StatelessWidget {
       onPressed!();
     } else if (url != null) {
       final Uri uri = Uri.parse(url!);
-      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-        debugPrint('Tidak dapat membuka link: $url');
+      
+      // Menggunakan try-catch agar langsung mencoba membuka aplikasi Maps
+      try {
+        final bool launched = await launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication,
+        );
+        
+        if (!launched) {
+          debugPrint('Tidak dapat membuka URL: $url');
+        }
+      } catch (e) {
+        debugPrint('Error saat membuka lokasi: $e');
       }
     }
   }

@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
             AppButton(
               label: 'Buka Lokasi Kampus',
               icon: Icons.location_on,
-              url: 'https://www.google.com/maps/search/?api=1&query=-6.190691,106.782079',
+              url: "https://www.google.com/maps/search/?api=1&query=-6.190691,106.78207",
             ),
 
             const SizedBox(height: 16),
