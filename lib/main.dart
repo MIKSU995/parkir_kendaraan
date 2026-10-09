@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'profile_card.dart'; // Mengimport ProfileCard dari langkah 1
+import 'theme/app_theme.dart'; // Impor file tema
+import 'widgets/app_buttons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,74 +12,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tugas Layout Flutter',
+      title: 'Praktikum 4',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // Background sesuai aturan NIM Ganjil/Genap
-        scaffoldBackgroundColor: Colors.tealAccent[100],
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme, // Menggunakan tema dari AppTheme
       home: const HomePage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
-
-  final List<Widget> pages = const [
-    HomeContent(),
-    Center(child: Text("Halaman Settings")),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fahmi Hartanto"),
-        centerTitle: true,
+        title: const Text('Halaman Utama'),
       ),
-      body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: ProfileCard(
-        nama: "Fahmi Hartanto",
-        nim: "20240801121", // Sesuaikan dengan NIM asli Anda
-        hobi: "Membaca Buku",
-        skorAktivitas: 97,  // Sesuaikan dengan rumus NIM Anda
+      body: Center(
+        child: CustomButton(
+          text: 'Tekan Di Sini',
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Tombol dari widget berhasil ditekan!'),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
