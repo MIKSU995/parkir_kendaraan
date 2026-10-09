@@ -46,16 +46,16 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Tombol Membuka URL Browser / Maps
+            // Tombol Membuka URL Google Maps Kampus
             AppButton(
               label: 'Buka Lokasi Kampus',
               icon: Icons.location_on,
-              url: 'https://maps.google.com',
+              url: 'https://www.google.com/maps/search/?api=1&query=Universitas+Esa+Unggul',
             ),
 
             const SizedBox(height: 16),
 
-            // Tombol Menjalankan Fungsi / Aksi Biasa
+            // Tombol Notifikasi
             AppButton(
               label: 'Tampilkan Notifikasi',
               icon: Icons.notifications,
