@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme/app_theme.dart';
-import 'widgets/buttons.dart';
+import 'widgets/app_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,109 +12,66 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Personal Profile Card',
+      theme: AppTheme.lightTheme,
+      home: const ProfileScreen(),
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
-      home: const HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const double cardPadding = 17.0;
+    const double cardRadius = 9.0;
+    const double buttonHeight = 41.0;
+    const double buttonRadius = 5.0;
+    const double avatarSize = 42.0;
+    const double spacingNameNim = 9.0;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Design System Demo'),
+        title: const Text('Profil Mahasiswa'),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppTheme.bgGradient,
-        ),
-        child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Badge Icon Kampus
-                      Container(
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                          color: AppTheme.primary.withOpacity(0.12),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Icon(
-                          Icons.school_rounded,
-                          color: AppTheme.primary,
-                          size: 32,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-
-                      // Judul Utama
-                      const Text(
-                        'Universitas Esa Unggul',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.textDark,
-                          letterSpacing: -0.5,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-
-                      // Deskripsi Singkat
-                      const Text(
-                        'Tekan tombol di bawah untuk melihat lokasi kampus atau menampilkan notifikasi.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppTheme.textMuted,
-                          height: 1.5,
-                        ),
-                      ),
-                      const SizedBox(height: 28),
-
-                      // Tombol 1: Buka Lokasi Maps (Gradasi Solid)
-                      const AppButton(
-                        label: 'Buka Lokasi Kampus',
-                        icon: Icons.location_on_rounded,
-                        url: 'https://www.google.com/maps/search/?api=1&query=-6.190691,106.782079',
-                      ),
-                      const SizedBox(height: 14),
-
-                      // Tombol 2: Notifikasi (Gaya Outlined Modern)
-                      AppButton(
-                        label: 'Tampilkan Notifikasi',
-                        icon: Icons.notifications_active_rounded,
-                        isOutlined: true,
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Row(
-                                children: [
-                                  Icon(Icons.check_circle_rounded, color: Colors.white),
-                                  SizedBox(width: 10),
-                                  Text('Notifikasi berhasil ditampilkan!'),
-                                ],
-                              ),
-                              backgroundColor: AppTheme.primary,
-                              behavior: SnackBarBehavior.floating,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(cardRadius),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(cardPadding),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    CircleAvatar(
+                      radius: avatarSize / 2,
+                      child: Icon(Icons.person, size: avatarSize * 0.6),
+                    ),
+                    SizedBox(height: 12.0),
+                    Text('Fahmi Hartanto'),
+                    SizedBox(height: spacingNameNim),
+                    Text('20240801121'),
+                    SizedBox(height: 8.0),
+                    Text('Teknik Informatika'),
+                    SizedBox(height: 12.0),
+                    Text(
+                      'SAYA ADALAH SEORANG JUNIOR DEVELOPER, SEKETERASI JENDRAL LDK IKMI, BENDAHARA KARANG TARUNA, DAN SAYA SUKA MEMBRAINSTORMING DIRI SAYA UNTUK MENINGKATKAN KREATIVITAS SAYA, LALU DI LDK IKMI SAYA SUDAH MENJALANKAN PROGRAM PROGRAM BESAR SEPERTI HARI BESAR TABLIGH AKBAR, PROGRAM RAMADHAN DAN LAIN LAINYA.',
+                    ),
+                    SizedBox(height: 16.0),
+                    AppButton(
+                      label: 'Kunjungi GitHub Saya',
+                      icon: Icons.code,
+                      url: 'https://github.com/MIKSU995',
+                      height: buttonHeight,
+                      borderRadius: buttonRadius,
+                    ),
+                  ],
                 ),
               ),
             ),
