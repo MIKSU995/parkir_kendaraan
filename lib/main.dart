@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                   children: const [
                     CircleAvatar(
                       radius: avatarSize / 2, // 21 px
-                      backgroundImage: AssetImage('assets/Profile.jpeg'),
+                      backgroundImage: AssetImage('assets/profile.jpeg'),
                     ),
                     SizedBox(height: 12.0),
                     Text('Fahmi Hartanto'),
